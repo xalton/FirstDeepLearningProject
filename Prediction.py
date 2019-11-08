@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ###Modules###
 import os
-#os.chdir('Documents/RickAndMorty_Classifier')
+#os.chdir('Documents/FirstDeeplearningProject')
 import numpy as np
 import pandas as pd
 import time
@@ -15,7 +15,7 @@ print('###################')
 print('###### START ######')
 print('###################')
 start = time.time()
-data_test = '/home/machinelearning/Documents/RickAndMorty_Classifier/Rick_And_Morty_Dataset/Test'
+data_test = '/home/machinelearning/Documents/FirstDeeplearningProject/Rick_And_Morty_Dataset/Test'
 
 categories = ['Morty','Rick']
 img_size = 100
