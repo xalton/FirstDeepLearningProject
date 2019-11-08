@@ -2,17 +2,18 @@
 #!/usr/bin/env python
 import os
 import time
-import tkinter
+import tkinter as tk
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+from tkinter.font import Font
 from matplotlib import pyplot as plt
 from tensorflow.keras.callbacks import TensorBoard
 from functions import DataPreparation,PlotImages,CreateModel
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 ###SetUp Main Window###
-mainapp = tkinter.Tk()
+mainapp = tk.Tk()
 title = "Rick or Morty ?"
 mainapp.title(title)
 
@@ -29,9 +30,9 @@ mainapp.minsize(800,600)
 mainapp.maxsize(1920,1080)
 mainapp.geometry(geo)
 
-label_title = tkinter.Label(mainapp, text=title)
-#font30 = "-family {DejaVu Sans} size 30 -weight normal"
-label_title.configure(font= '30')
+label_title = tk.Label(mainapp, text=title)
+font30 = Font(family = 'Times New Roman',size = 100)
+label_title.configure(font= font30)
 
 
 
