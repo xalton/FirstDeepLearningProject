@@ -29,7 +29,7 @@ def resize_image(event):
 def name_func():
     print('Test')
 
-def close_window (root):
+def close_window ():
     root.destroy()
 
 
@@ -66,25 +66,32 @@ bg_label = tk.Label(frame,
 bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 bg_label.bind('<Configure>',resize_image)
 
-
+btn_h = 1
+btn_w = 6
 button_train = tk.Button(frame, text='Train',
         bg='#e8ff95',
         font=('courier',25),
-        command=name_func
+        command=name_func,
+        height = btn_h,
+        width = btn_w,
          )
 button_test = tk.Button(frame, text='Test',
         bg='#e8ff95',
         font=('courier',25),
-        command=name_func
+        command=name_func,
+        height = btn_h,
+        width = btn_w,
          )
 button_quit = tk.Button(frame, text='Quit',
         bg='#e8ff95',
         font=('courier',25),
-        command=close_window
+        command=close_window,
+        height = btn_h,
+        width = btn_w,
          )
 
-button_train.place(relx=0.5, rely=0.35, anchor='center')
-button_test.place(relx=0.5, rely=0.45, anchor='center')
+button_train.place(relx=0.5, rely=0.23, anchor='center')
+button_test.place(relx=0.5, rely=0.35, anchor='center')
 button_quit.place(relx=0.5, rely=0.47, anchor='center')
 root.mainloop()
 
