@@ -17,7 +17,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 path = '/home/machinelearning/Documents/FirstDeepLearningProject/'
 ###Style and Font###
-font_title = ('courier',82)
+font_title = ('courier',85)
 def set_style():
     style = ttk.Style()
     style.theme_create( "st_app", parent="alt", settings={
@@ -43,9 +43,6 @@ def set_style():
 #         "Horizontal.TProgressbar":{"configure": {"background": StColors.mid_grey}}
     })
     style.theme_use("st_app")
-    #style.configure('TButton', font =('courier', 20, 'bold'),borderwidth = '4')
-    #style.map('TButton', foreground = [('active', '! disabled', 'green')],
-#                      background = [('active', 'black')])
 
 ###SetUp Window###
 class Application(tk.Tk):
@@ -80,19 +77,18 @@ class Application(tk.Tk):
 
 ###Setup Pages###
 class ResizingLabel(tk.Label):
-    def __init__(self, parent, imagepath, *args, **kwargs):
+    def __init__(self, parent, imagepath,my_text, *args, **kwargs):
         tk.Label.__init__(self, parent, *args, **kwargs)
-
         self.configure(bd=0)
-        self.parent=parent
+        self.parent = parent
         self.parent.bind('<Configure>', self._resize_image)
-
+        self.my_text =  my_text
         self.imagepath = imagepath
         self.image = Image.open(self.imagepath)
         self.img_copy= self.image.copy()
         self.background_image = ImageTk.PhotoImage(self.image)
         self.background = tk.Label(self, image=self.background_image,
-                        text=' Rick or Morty ?',
+                        textvariable=self.my_text,
                         font=font_title,
                         foreground='#192650',
                         anchor='n',
@@ -115,7 +111,9 @@ class StartPage(tk.Frame):
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
         bg_path = path+'/Images/bg1.png'
-        bg_label = ResizingLabel(self, bg_path)
+        my_text = tk.StringVar()
+        my_text.set('Rick or Morty ?')
+        bg_label = ResizingLabel(self, bg_path,my_text)
         btn_h = 35
         btn_w = 150
         button_train = ttk.Button(self, text='Train',
@@ -140,12 +138,17 @@ class TrainPage(tk.Frame):
 
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
-        label = tk.Label(self,text="Training page", font=('courier',12))
-        label.pack(pady=10,padx=10)
+        bg2_path = path+'/Images/bg2.png'
+        my_text2 = tk.StringVar()
+        my_text2.set('Training')
+        bg2_label = ResizingLabel(self,bg2_path,my_text2)
+
         button_test1 = ttk.Button(self, text='Test',
                     command=lambda:controller.show_frame(TestPage))
         button_main1 = ttk.Button(self, text='Main',
                     command=lambda:controller.show_frame(StartPage))
+
+        bg2_label.place(x=1, y=1, relwidth=1, relheight=1)
         button_test1.pack()
         button_main1.pack()
 
@@ -165,61 +168,6 @@ class TestPage(tk.Frame):
 ###Run app###
 app = Application()
 app.mainloop()
-# screen_x, screen_y = 1000,600
-# geo = "%dx%d" % (screen_x, screen_y)
-# root.minsize(800,600)
-# root.maxsize(1920,1080)
-# root.geometry(geo)
-#
-# frame = tk.Frame(root, relief='raised', borderwidth=2)
-# frame.pack(fill='both', expand= True)
-# frame.pack_propagate(False)
-#
-# bg = Image.open(path+"Images/bg1.png")
-# photo = ImageTk.PhotoImage(bg)
-#
-#
-# bg_label = tk.Label(frame,
-#         image=photo,
-#         text=title,
-#         anchor='nw',
-#         compound='bottom',
-#         font='courier 90',
-#         )
-#
-# bg_label.place(x=0, y=0, relwidth=1, relheight=1)
-# bg_label.bind('<Configure>',resize_image)
-#
-# btn_h = 1
-# btn_w = 6
-# button_train = tk.Button(frame, text='Train',
-#         bg='#e8ff95',
-#         font=('courier',25),
-#         command=name_func,
-#         height = btn_h,
-#         width = btn_w,
-#          )
-# button_test = tk.Button(frame, text='Test',
-#         bg='#e8ff95',
-#         font=('courier',25),
-#         command=name_func,
-#         height = btn_h,
-#         width = btn_w,
-#          )
-# button_quit = tk.Button(frame, text='Quit',
-#         bg='#e8ff95',
-#         font=('courier',25),
-#         command=close_window,
-#         height = btn_h,
-#         width = btn_w,
-#          )
-#
-
-
-
-
-
-
 
 
 #Input name
