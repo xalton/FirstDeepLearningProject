@@ -1,0 +1,7 @@
+couleur verte:#D3F698
+couleur bleu:#86C6CF
+couleur bleu_foncé:#192650
+couleur marron:#BB8091
+couleur orange:#F8C291
+couleur blanc cassé:#EFF6B9
+couleur violet:#D252AB
