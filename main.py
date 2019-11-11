@@ -17,7 +17,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 path = '/home/machinelearning/Documents/FirstDeepLearningProject/'
 ###Style and Font###
-font_title = ('courier',85)
+font_title = ('courier',82)
 def set_style():
     style = ttk.Style()
     style.theme_create( "st_app", parent="alt", settings={
@@ -30,11 +30,12 @@ def set_style():
 #                                         "background"      : StColors.light_grey,
 #                                         "foreground"      : "black"}},
 #
-         "TButton":       {"configure": {"font"            :("courier", 25, 'bold'),
+         "TButton":       {"configure": {"font"            :("courier", 22, 'bold'),
                                          "background"      : "#86C6CF",
                                          "foreground"      : "#192650",
                                          "relief"          : "raised",
-                                         "anchor"          : "center"},
+                                         "anchor"          : "center",
+                                         "justify"         : "center"},
                              "map"      : {"background"      : [("active", '#86C6CF')],
                                          "foreground"      : [("active", '#D3F698')]}},
 #
