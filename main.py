@@ -137,7 +137,17 @@ class StartPage(tk.Frame):
 def retrieve_input(entry_name):
     model_name = entry_name.get()
     print('Name of the model => %s' %model_name)
-
+def upload_train():
+    wind = tk.Tk()
+    wind.geometry("300x300")
+    wind.title("Upload")
+    wind.configure(background='#D5F89E')
+    button_upload_train = ttk.Button(wind,text='Trainning dataset')
+    button_upload_test = ttk.Button(wind,text='Test dataset')
+    button_upload_train['style'] = 'st_app.TButton'
+    button_upload_train.pack()
+    button_upload_test.pack()
+    wind.mainloop()
 class TrainPage(tk.Frame):
 
     def __init__(self,parent,controller):
@@ -157,8 +167,8 @@ class TrainPage(tk.Frame):
         entry_name.bind('<Return>', (lambda event:retrieve_input(entry_name)))
         model_name = entry_name.get()
 
-        button_upload = ttk.Button(self, text='Upload')
-                    #command=lambda:)
+        button_upload = ttk.Button(self, text='Upload',
+                    command=lambda:upload_train())
         button_start_train = ttk.Button(self, text='Start')
                     #command=lambda:)
         button_test1 = ttk.Button(self, text='Test',
@@ -187,7 +197,8 @@ class TrainPage(tk.Frame):
                     height=btn_h,
                     width=btn_w)
         termf.place(relx=0.05,rely=0.45)
-    def upload()
+
+
 class TestPage(tk.Frame):
 
     def __init__(self,parent,controller):
