@@ -159,9 +159,11 @@ class TrainPage(tk.Frame):
 
         button_upload = ttk.Button(self, text='Upload')
                     #command=lambda:)
+        button_start_train = ttk.Button(self, text='Start')
+                    #command=lambda:)
         button_test1 = ttk.Button(self, text='Test',
                     command=lambda:controller.show_frame(TestPage))
-        button_main1 = ttk.Button(self, text='Main',
+        button_main1 = ttk.Button(self, text='Back',
                     command=lambda:controller.show_frame(StartPage))
 
         termf = tk.Frame(self, height=200, width=382)
@@ -175,6 +177,9 @@ class TrainPage(tk.Frame):
         button_upload.place(relx=0.12, rely=0.3, anchor='center',
                     height=btn_h,
                     width=btn_w)
+        button_start_train.place(relx=0.35, rely=0.3, anchor='center',
+                    height=btn_h,
+                    width=btn_w)
         button_test1.place(relx=0.12, rely=0.4, anchor='center',
                     height=btn_h,
                     width=btn_w)
@@ -182,6 +187,7 @@ class TrainPage(tk.Frame):
                     height=btn_h,
                     width=btn_w)
         termf.place(relx=0.05,rely=0.45)
+    def upload()
 class TestPage(tk.Frame):
 
     def __init__(self,parent,controller):
@@ -198,15 +204,6 @@ class TestPage(tk.Frame):
 app = Application()
 app.mainloop()
 
-
-#Input name
-#entry_name = tkinter.Entry(root,width=25)
-#entry_name.pack()
-
-#Button
-#button_Test = tkinter.Button(root, text='Test',command = name_func)
-#        button_Test = tk.Button(self, text='Test',
-#                    command=lambda:qf("Yes"))
 
 #Check
 #check_widget = tkinter.Checkbutton(root,text='')
@@ -237,5 +234,3 @@ app.mainloop()
 #def update_label(*args):
 #   var_label.set(var_entry.get())
 #var_entry.trace("w",update_label)
-
-#using grid instead of pack()
