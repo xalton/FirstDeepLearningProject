@@ -134,24 +134,54 @@ class StartPage(tk.Frame):
                     height=btn_h,
                     width=btn_w)
 
+def retrieve_input(entry_name):
+    model_name = entry_name.get()
+    print('Name of the model => %s' %model_name)
+
 class TrainPage(tk.Frame):
 
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
         bg2_path = path+'/Images/bg2.png'
         my_text2 = tk.StringVar()
+        name = tk.StringVar()
         my_text2.set('Training')
+        btn_h = 35
+        btn_w = 150
         bg2_label = ResizingLabel(self,bg2_path,my_text2)
 
+        text_label = ttk.Label(self,text='Model:',
+                    background='#D3F698',
+                    font=('courier',25,"bold"))
+        entry_name = tk.Entry(self,textvariable=name,width=15)
+        entry_name.bind('<Return>', (lambda event:retrieve_input(entry_name)))
+        model_name = entry_name.get()
+
+        button_upload = ttk.Button(self, text='Upload')
+                    #command=lambda:)
         button_test1 = ttk.Button(self, text='Test',
                     command=lambda:controller.show_frame(TestPage))
         button_main1 = ttk.Button(self, text='Main',
                     command=lambda:controller.show_frame(StartPage))
 
-        bg2_label.place(x=1, y=1, relwidth=1, relheight=1)
-        button_test1.pack()
-        button_main1.pack()
+        termf = tk.Frame(self, height=200, width=382)
+        wid = termf.winfo_id()
+        os.system('xterm -fg white -bg black -into %d -hold -geometry 250x300 -sb &' % wid)
 
+
+        bg2_label.place(x=1, y=1, relwidth=1, relheight=1)
+        text_label.place(relx=0.24,rely=0.23,anchor='center')
+        entry_name.place(relx=0.35,rely=0.24,anchor='center')
+        button_upload.place(relx=0.12, rely=0.3, anchor='center',
+                    height=btn_h,
+                    width=btn_w)
+        button_test1.place(relx=0.12, rely=0.4, anchor='center',
+                    height=btn_h,
+                    width=btn_w)
+        button_main1.place(relx=0.35, rely=0.4, anchor='center',
+                    height=btn_h,
+                    width=btn_w)
+        termf.place(relx=0.05,rely=0.45)
 class TestPage(tk.Frame):
 
     def __init__(self,parent,controller):
@@ -164,7 +194,6 @@ class TestPage(tk.Frame):
                     command=lambda:controller.show_frame(TrainPage))
         button_main2.pack()
         button_train2.pack()
-
 ###Run app###
 app = Application()
 app.mainloop()
