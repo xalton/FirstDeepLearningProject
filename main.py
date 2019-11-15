@@ -1,4 +1,4 @@
-#coding:utf-8
+        #coding:utf-8
 #!/usr/bin/env python
 import os
 import time
@@ -9,6 +9,7 @@ import tensorflow as tf
 
 import tkinter.font as tkFont
 from tkinter import ttk
+from tkinter import filedialog
 from PIL import ImageTk, Image
 from matplotlib import pyplot as plt
 from tensorflow.keras.callbacks import TensorBoard
@@ -20,16 +21,7 @@ path = '/home/machinelearning/Documents/FirstDeepLearningProject/'
 font_title = ('courier',85)
 def set_style():
     style = ttk.Style()
-    style.theme_create( "st_app", parent="alt", settings={
-#         "TLabel":        {"configure": {"foreground"      : StColors.bright_green,
-#                                         "padding"         : 10,
-#                                         "font"            : ("Calibri", 12)}},
-#
-#         "TCombobox":     {"configure": {"selectbackground": StColors.dark_grey,
-#                                         "fieldbackground" : "white",
-#                                         "background"      : StColors.light_grey,
-#                                         "foreground"      : "black"}},
-#
+    style.theme_create( "st_app", parent="clam", settings={
          "TButton":       {"configure": {"font"            :("courier", 22, 'bold'),
                                          "background"      : "#86C6CF",
                                          "foreground"      : "#192650",
@@ -38,7 +30,6 @@ def set_style():
                                          "justify"         : "center"},
                              "map"      : {"background"      : [("active", '#86C6CF')],
                                          "foreground"      : [("active", '#D3F698')]}},
-#
 #         "TEntry":        {"configure": {"foreground"      : "black"}},
 #         "Horizontal.TProgressbar":{"configure": {"background": StColors.mid_grey}}
     })
@@ -138,16 +129,21 @@ def retrieve_input(entry_name):
     model_name = entry_name.get()
     print('Name of the model => %s' %model_name)
 def upload_train():
-    wind = tk.Tk()
+    wind = tk.Toplevel()
     wind.geometry("300x300")
     wind.title("Upload")
     wind.configure(background='#D5F89E')
-    button_upload_train = ttk.Button(wind,text='Trainning dataset')
-    button_upload_test = ttk.Button(wind,text='Test dataset')
-    button_upload_train['style'] = 'st_app.TButton'
-    button_upload_train.pack()
-    button_upload_test.pack()
+    style = ttk.Style()
+    style.configure('W.TButton', font=('courier', 15, 'bold'),
+                foreground='#192650',
+                background="#86C6CF")
+    button_upload_train = ttk.Button(wind,text='Trainning dataset',style='W.TButton')
+    button_upload_test = ttk.Button(wind,text='Validation dataset',style='W.TButton')
+    button_upload_train.pack(padx=10,pady=10,anchor='center')
+    button_upload_test.pack(padx=10,pady=10,anchor='center')
     wind.mainloop()
+
+
 class TrainPage(tk.Frame):
 
     def __init__(self,parent,controller):
@@ -160,9 +156,9 @@ class TrainPage(tk.Frame):
         btn_w = 150
         bg2_label = ResizingLabel(self,bg2_path,my_text2)
 
-        text_label = ttk.Label(self,text='Model:',
+        text_label = ttk.Label(self,text='Model name:',
                     background='#D3F698',
-                    font=('courier',25,"bold"))
+                    font=('courier',24,"bold"))
         entry_name = tk.Entry(self,textvariable=name,width=15)
         entry_name.bind('<Return>', (lambda event:retrieve_input(entry_name)))
         model_name = entry_name.get()
@@ -176,27 +172,27 @@ class TrainPage(tk.Frame):
         button_main1 = ttk.Button(self, text='Back',
                     command=lambda:controller.show_frame(StartPage))
 
-        termf = tk.Frame(self, height=200, width=382)
-        wid = termf.winfo_id()
-        os.system('xterm -fg white -bg black -into %d -hold -geometry 250x300 -sb &' % wid)
+        #termf = tk.Frame(self, height=200, width=382)
+        #wid = termf.winfo_id()
+        #os.system('xterm -fg white -bg black -into %d -hold -geometry 250x300 -sb &' % wid)
 
 
         bg2_label.place(x=1, y=1, relwidth=1, relheight=1)
-        text_label.place(relx=0.24,rely=0.23,anchor='center')
-        entry_name.place(relx=0.35,rely=0.24,anchor='center')
-        button_upload.place(relx=0.12, rely=0.3, anchor='center',
+        text_label.place(relx=0.28,rely=0.23,anchor='center')
+        entry_name.place(relx=0.45,rely=0.24,anchor='center')
+        button_upload.place(relx=0.2, rely=0.4, anchor='center',
                     height=btn_h,
                     width=btn_w)
-        button_start_train.place(relx=0.35, rely=0.3, anchor='center',
+        button_start_train.place(relx=0.2, rely=0.50, anchor='center',
                     height=btn_h,
                     width=btn_w)
-        button_test1.place(relx=0.12, rely=0.4, anchor='center',
+        button_test1.place(relx=0.85, rely=0.115, anchor='center',
                     height=btn_h,
                     width=btn_w)
-        button_main1.place(relx=0.35, rely=0.4, anchor='center',
+        button_main1.place(relx=0.15, rely=0.12, anchor='center',
                     height=btn_h,
                     width=btn_w)
-        termf.place(relx=0.05,rely=0.45)
+        #termf.place(relx=0.05,rely=0.45)
 
 
 class TestPage(tk.Frame):
