@@ -128,6 +128,7 @@ class StartPage(tk.Frame):
 def retrieve_input(entry_name):
     model_name = entry_name.get()
     print('Name of the model => %s' %model_name)
+
 def upload_train():
     wind = tk.Toplevel()
     wind.geometry("300x300")
@@ -137,10 +138,15 @@ def upload_train():
     style.configure('W.TButton', font=('courier', 15, 'bold'),
                 foreground='#192650',
                 background="#86C6CF")
+    upload_text_label = ttk.Label(wind,text='Upload image datasets:',background='#D3F698',
+                font=('courier',19,"bold"))
     button_upload_train = ttk.Button(wind,text='Trainning dataset',style='W.TButton')
     button_upload_test = ttk.Button(wind,text='Validation dataset',style='W.TButton')
-    button_upload_train.pack(padx=10,pady=10,anchor='center')
-    button_upload_test.pack(padx=10,pady=10,anchor='center')
+    button_upload_ok = ttk.Button(wind,text='Ok',style='W.TButton',command=wind.destroy)
+    upload_text_label.pack(pady=5,anchor='center')
+    button_upload_train.pack(padx=10,pady=25,anchor='center')
+    button_upload_test.pack(padx=10,pady=30,anchor='center')
+    button_upload_ok.pack(padx=10,pady=35,anchor='center')
     wind.mainloop()
 
 
