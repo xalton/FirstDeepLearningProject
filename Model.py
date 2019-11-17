@@ -3,7 +3,7 @@
 ###Modules###
 
 import os
-#os.getcwd()
+os.getcwd()
 #os.chdir('Documents/FirstDeeplearningProject')
 import time
 import numpy as np
@@ -14,7 +14,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 ###Data Path###
 
 categories = ['Morty','Rick']
-data_dir = '/home/machinelearning/Documents/FirstDeeplearningProject/Rick_And_Morty_Dataset/'
+data_dir = '/home/machinelearning/Documents/FirstDeepLearningProject/Rick_And_Morty_Dataset/'
 train = os.path.join(data_dir,'Train')
 validation =  os.path.join(data_dir,'Validation')
 
@@ -39,7 +39,7 @@ val_data_gen, sample_val_images,categories_val_images = DataPreparation(
 print('Train data')
 PlotImages(sample_train_images,categories_train_images)
 print('Validation data')
-PlotImages(sample_val_images,categories_train_images)
+PlotImages(sample_val_images,categories_val_images)
 
 ###Create the model###
 
