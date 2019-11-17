@@ -31,7 +31,7 @@ def set_style():
                              "map"      : {"background"      : [("active", '#86C6CF')],
                                          "foreground"      : [("active", '#D3F698')]}},
 #         "TEntry":        {"configure": {"foreground"      : "black"}},
-#         "Horizontal.TProgressbar":{"configure": {"background": StColors.mid_grey}}
+         "Horizontal.TProgressbar":{"configure": {"background":'#86C6CF' }}
     })
     style.theme_use("st_app")
 
@@ -178,6 +178,18 @@ class TrainPage(tk.Frame):
         button_main1 = ttk.Button(self, text='Back',
                     command=lambda:controller.show_frame(StartPage))
 
+        progress_label = ttk.Label(self, text= "Training Progress",
+                    background='#86C6CF',
+                    font=('courier',14,"bold"))
+        progress_label.place(relx=0.2,rely=0.91, anchor = 'center')
+
+        progress = tk.IntVar(self)
+        progress_bar = ttk.Progressbar(self, orient="horizontal",
+                    variable=progress,
+                    length=200,
+                    maximum=100,
+                    mode="determinate")
+        progress_bar.place(relx=0.2,rely=0.85 , anchor='center')
         #termf = tk.Frame(self, height=200, width=382)
         #wid = termf.winfo_id()
         #os.system('xterm -fg white -bg black -into %d -hold -geometry 250x300 -sb &' % wid)
@@ -189,7 +201,7 @@ class TrainPage(tk.Frame):
         button_upload.place(relx=0.2, rely=0.4, anchor='center',
                     height=btn_h,
                     width=btn_w)
-        button_start_train.place(relx=0.2, rely=0.50, anchor='center',
+        button_start_train.place(relx=0.2, rely=0.60, anchor='center',
                     height=btn_h,
                     width=btn_w)
         button_test1.place(relx=0.85, rely=0.115, anchor='center',
